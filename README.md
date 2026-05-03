@@ -1,92 +1,417 @@
-# RankUP-Legacy
+# 🏰 RankUP Legacy - Game Design Document
 
-# 🌺 RankUP Flowers - Game Design Document
-
-O **RankUP Flowers** é um servidor de Minecraft focado em uma economia temática onde as flores são o centro da jogabilidade e progressão. O ambiente mistura elementos medievais com fantasia em um cenário de jardim épico.
-
----
-
-## 🏛️ Estrutura Elementar
-As flores são o foco principal da jogabilidade e economia. Toda a decoração segue o estilo jardim medieval com elementos de fantasia.
-
-### 💰 Economias e Moedas
-1.  **Coins:** Moeda padrão obtida via mineração, venda de colheitas, drops de spawners/máquinas, crates, caixas misteriosas e eventos.
-2.  **Golds:** Moeda rara. Obtida em crates raras, missões completas, eventos e compra no site. Usada no `/shop`.
-3.  **Pétalas:** Recurso essencial para evolução de Rank.
-    * Colha flores no **Mundo de Plantações**.
-    * Obtenha **Flores Brilhantes** (variação rara).
-    * Troque com a NPC **Flora – Sábia das Pétalas** na Feira das Flores.
-
-**⚠️ Limite de Compra:** Sistema para limitar a compra de spawners e máquinas. Obtido em crates, pesca e matando bosses.
+> Documento oficial de design do servidor RankUP Legacy  
+> Estrutura completa para desenvolvimento, balanceamento e implementação.
 
 ---
 
-## 🌻 Sistema de Ranks
-A jornada floral é dividida em níveis de prestígio (III, II, I) baseados em flores:
+# 📌 1. VISÃO GERAL
 
-| Rank | Descrição | Cor Sugerida |
-| :--- | :--- | :--- |
-| **Dente-de-Leão** | Simples, início da jornada | Branco (`&f`) |
-| **Tulipa** | Colorida e versátil | Roxo (`&5`) |
-| **Margarida** | Discreta e firme | Amarelo (`&e`) |
-| **Hibisco** | Tropical e vibrante | Vermelho (`&c`) |
-| **Sakura** | Rara e elegante | Rosa (`&d`) |
-| **Orquídea** | Misteriosa e refinada | Azul (`&9`) |
-| **Rosa Negra** | Símbolo de domínio e respeito | Preto (`&0`) |
-| **Flor Eterna** | O auge lendário da jornada | Laranja/Ouro (`&6`) |
+O RankUP Legacy é um servidor baseado em progressão contínua, onde o jogador evolui através de mineração, geração passiva de recursos e otimização de eficiência econômica.
+
+A experiência é construída em torno de um sistema de ranks lineares (A → Z), com desbloqueio progressivo de conteúdo e aumento escalável de ganhos.
 
 ---
 
-## 🚜 Mundo de Plantações
-O coração da economia. As flores crescem apenas nesta dimensão dedicada.
+# 🔁 2. CORE LOOP
 
-### Tabela de Lucro (Exemplos de Valores)
-| Flor | Comum | VIP | MVP | MVP+ |
-| :--- | :--- | :--- | :--- | :--- |
-| **Tulipa** | 10 - 25 | 13 - 35 | 20 - 45 | 25 - 60 |
-| **Allium** | 35 - 100 | 45 - 120 | 55 - 150 | 65 - 200 |
-| **Roseira** | 125 - 300 | 175 - 360 | 225 - 415 | 250 - 500 |
-| **Peônia** | 400 - 1250 | 435 - 2K | 500 - 3K | 650 - 4.5K |
-| **Girassol** | 2000 - 4250 | 3K - 5K | 4K - 6K | 5K - 8K |
+O gameplay segue o ciclo abaixo:
 
-### Evolução do Jardim
-1.  **Jardim Broto:** Desbloqueia Tulipa (Replantio: 60s).
-2.  **Jardim Rústico:** Desbloqueia Allium (Replantio: 55s).
-3.  **Jardim de Rosas:** Desbloqueia Roseira (Replantio: 50s).
-4.  **Jardim Aromático:** Desbloqueia Peônia (Replantio: 45s).
-5.  **Jardim Solar:** Desbloqueia Girassol (Replantio: 40s).
+1. Minerar blocos nas minas
+2. Obter Coins
+3. Executar /rankup
+4. Desbloquear novos sistemas:
+   - Minas mais lucrativas
+   - Spawners
+   - Máquinas
+5. Aumentar geração de renda
+6. Repetir com maior eficiência
 
 ---
 
-## ⛏️ Mineração e Combate
-Progressão via NPC "Guardião Raiz".
-* **Minas:** Silvestre, Nebulosa, Âmbar, Rubra, Orquídea e Estelar.
-* **Mina PvP:** Área central de alto risco. Jogadores podem perder Flores Brilhantes ao serem derrotados.
+# 💰 3. ECONOMIA
+
+## 3.1 Moedas
+
+### 🪙 Coins
+- Moeda principal do servidor
+- Utilização:
+  - Rankup
+  - Loja (/loja)
+  - Compra de spawners
+  - Upgrades de máquinas
+
+### 💎 Cash
+- Moeda premium
+- Origem:
+  - Loja externa
+  - Crates raras
+- Utilização:
+  - /shop
+  - Boosters
+  - Itens exclusivos
 
 ---
 
-## 🐝 Máquinas e Pets
-### Máquinas (Melificadoras)
-Produzem **Potes de Mel**, usados para alimentar e evoluir pets.
+# 🏆 4. SISTEMA DE RANKS
 
-### Pets
-Possuem 5 níveis de evolução.
-* **Espécies:** Joaninha, Pinguim, Guaxinim, Raposa e Abelha (Lendária).
-* **Evolução:** Requer **Mel Encantado** (nível 5).
+## 4.1 Estrutura
+
+- Progressão linear: A → Z
+- Cada rank exige Coins
+- Escala exponencial
+
+## 4.2 Recompensas por rank
+
+Cada rank desbloqueia:
+
+- Nova mina
+- Novos spawners disponíveis
+- Acesso a upgrades adicionais
+- Aumento de eficiência econômica (multiplicadores internos)
+
+## 4.3 Exemplo de Progressão
+
+| Rank | Custo |
+|------|------|
+| A | Inicial |
+| B | 10M |
+| C | 50M |
+| D | 200M |
+| E | 1B |
+| F | 5B |
+| ... | Escalável até Z |
 
 ---
 
-## 🛡️ Habilidades e Bosses
-* **Skills:** Mineração, Escavação, Herbalismo, Espadas, Arqueiro e Alquimia.
-* **Bosses:** Invocados por itens ou eventos. Dropam fragmentos de armaduras e itens de Gold.
+# ⛏️ 5. MINAS
+
+## 5.1 Sistema Geral
+
+- Cada rank possui uma mina exclusiva
+- Blocos regeneram automaticamente
+- Sistema de reset automático (30s – 60s)
+
+## 5.2 Estrutura Progressiva
+
+| Rank | Composição |
+|------|-----------|
+| A | Pedra, carvão |
+| B | Ferro, carvão |
+| C | Ferro, ouro |
+| D | Ouro, redstone |
+| E | Diamante |
+| F+ | Diamante + esmeralda |
+| Late Game | Blocos custom (alto valor) |
+
+## 5.3 Mecânicas
+
+- Venda automática (VIP/perk)
+- Blocos especiais:
+  - Chance de drop raro
+  - Valor elevado
+- Multiplicadores por rank
 
 ---
 
-## ⌨️ Comandos Principais
-* `/plantacoes`: Teleporte para o mundo de cultivo.
-* `/feira`: Hub de NPCs e trocas.
-* `/skills`: Menu de habilidades.
-* `/pet`: Gerenciamento de companheiros.
-* `/shop`: Itens exclusivos com Gold.
+# ⚔️ 6. MINA PVP
+
+## 6.1 Características
+
+- PvP ativado
+- Drop total ao morrer
+- Proteção inicial: 15s
+- Logout = morte automática
+
+## 6.2 Recompensas
+
+- Coins elevados
+- Chaves
+- Tokens
+- Chance de drop de itens do jogador
+
+---
+
+# 🏝️ 7. PLOTS
+
+## 7.1 Estrutura
+
+- Tamanho: 51x51
+- Comando: /plot auto
+- Limite inicial: 1
+
+## 7.2 Funções
+
+- Instalação de spawners
+- Instalação de máquinas
+- Construções
+
+## 7.3 Expansão
+
+- Via VIP
+- Via compra no /shop
+
+---
+
+# 🧬 8. GERADORES
+
+---
+
+## 8.1 Spawners
+
+### Funcionamento:
+
+- Spawn automático de mobs
+- Drops enviados para armazenamento interno
+
+### Mecânicas:
+
+- Stack infinito
+- Venda:
+  - Limitada por padrão
+  - Ilimitada com upgrade
+
+---
+
+## 8.2 Máquinas
+
+Sistema de produção passiva.
+
+### Exemplo: Melificadora
+
+#### Produção base:
+- Ciclo: 30 segundos
+
+#### Atributos:
+
+- Produção por ciclo
+- Chance de duplicação
+- Consumo de combustível
+- Velocidade
+
+#### Upgrades:
+
+- Redução de tempo
+- Aumento de produção
+- Eficiência energética
+
+#### Stack:
+
+- Produção soma proporcionalmente
+
+---
+
+# 📦 9. CRATES
+
+## 9.1 Tipos
+
+- Comum
+- Rara
+- Épica
+- Lendária
+- Vote
+- VIP
+
+## 9.2 Sistema
+
+- Abertura via chave
+- Sistema de chances (%)
+
+## 9.3 Drops
+
+- Coins
+- Cash
+- Spawners
+- Máquinas
+- Boosters
+- Itens raros
+
+---
+
+# 👑 10. BOSSES
+
+## 10.1 Sistema
+
+- Invocação via item
+- HP elevado
+- IA custom
+
+## 10.2 Mecânicas
+
+- Habilidades especiais
+- Área de combate dedicada
+
+## 10.3 Recompensas
+
+- Chaves
+- Coins
+- Cash
+- Boosters
+- Itens raros
+
+---
+
+# 🎣 11. PESCA
+
+## 11.1 Sistema
+
+- Minigame passivo
+- Chance baseada em RNG
+
+## 11.2 Drops
+
+- Peixes (venda)
+- Chaves
+- Boosters
+- Coins
+
+---
+
+# 🐾 12. PETS
+
+## 12.1 Função
+
+Boost de performance do jogador.
+
+## 12.2 Tipos de bônus
+
+- +Coins
+- +Drops
+- +Velocidade
+- +Eficiência
+
+## 12.3 Mecânicas
+
+- Evolução por níveis
+- Sistema de alimentação
+- 1 ativo por jogador
+
+---
+
+# 🎯 13. EVENTOS
+
+## 13.1 Fixos
+
+- Frequência: 2h
+- Recompensas maiores
+
+## 13.2 Aleatórios
+
+- Frequência variável
+- Recompensas menores
+
+## 13.3 Exemplos
+
+- TNT Run
+- Corrida
+- Eventos de chat
+- Mineração bônus
+
+---
+
+# 🛒 14. LOJA (/loja)
+
+Compra com Coins:
+
+- Blocos
+- Ferramentas
+- Combate
+- Utilitários
+
+---
+
+# 💎 15. SHOP (/shop)
+
+Compra com Cash:
+
+- Equipamentos OP
+- Boosters
+- Packs
+- Benefícios
+
+---
+
+# 📅 16. MISSÕES
+
+## 16.1 Diárias
+
+- Minerar
+- Matar mobs
+- Pescar
+- Vender itens
+
+## 16.2 Semanais
+
+- Rankup
+- Grandes quantidades de farm
+- Eventos
+
+---
+
+# ⚙️ 17. SISTEMAS ADICIONAIS
+
+## Boosters
+
+- Multiplicador de Coins
+- Multiplicador de drops
+
+## Leaderboards
+
+- Top Coins
+- Top Rank
+- Top Boss
+
+## Feedback visual
+
+- Action bar
+- Hologramas
+- Mensagens dinâmicas
+
+---
+
+# 🧩 18. DIRETRIZES DE DESENVOLVIMENTO
+
+- Sistema modular
+- Alta performance
+- Escalabilidade
+- Baixo uso de entidades
+- Interfaces simples
+
+---
+
+# 🚀 19. MONETIZAÇÃO
+
+## VIP
+
+Benefícios:
+
+- Acesso antecipado a conteúdos
+- Multiplicadores
+- Limites maiores
+- Kits exclusivos
+
+## Loja externa
+
+- Venda de:
+  - Cash
+  - Chaves
+  - Boosters
+  - Spawners
+
+---
+
+# 📊 20. BALANCEAMENTO (DIRETRIZ)
+
+- Economia inflada (OP)
+- Progressão crescente
+- Early game rápido
+- Mid game médio
+- Late game lento
+
+---
+
+# ✅ STATUS
+
+Documento pronto para implementação.
 
 ---
